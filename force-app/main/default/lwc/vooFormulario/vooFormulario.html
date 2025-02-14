@@ -1,0 +1,25 @@
+<template>
+    <lightning-card title="Aeroporto" icon-name = "standard:store_group">
+        <lightning-record-edit-form 
+        object-api-name="Voo__c"
+        onsuccess={handleSuccess}
+        onsubmit={handleSubmit}>
+        <div class="slds-p-around_medium">
+            <lightning-input-field field-name="Partida__c"></lightning-input-field>
+            <lightning-input-field field-name="Chegada__c"></lightning-input-field>
+
+            <div class = "slds-p-around_medium">
+                <lightning-button 
+                label="Salvar Voo" 
+                variant="brand" 
+                type="submit"
+                >
+                </lightning-button>
+            </div>
+        </div>
+        </lightning-record-edit-form>
+        <div class="exampleHolder">
+            <lightning-spinner alternative-text="Loading" size="medium" if:true={spinner}></lightning-spinner>
+        </div>
+    </lightning-card>
+</template>
