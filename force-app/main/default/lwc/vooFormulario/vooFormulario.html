@@ -1,23 +1,41 @@
 <template>
-    <lightning-card title="Aeroporto" icon-name = "standard:store_group">
-        <lightning-record-edit-form 
-        object-api-name="Voo__c"
-        onsuccess={handleSuccess}
-        onsubmit={handleSubmit}>
-        <div class="slds-p-around_medium">
-            <lightning-input-field field-name="Partida__c"></lightning-input-field>
-            <lightning-input-field field-name="Chegada__c"></lightning-input-field>
+    <lightning-card title="Aeroporto" class="slds-card__body_inner" icon-name="standard:search">
+        <div>
+            <lightning-record-picker
+                onsubmit={handleSubmit}
+                onsuccess={handleSuccess}
+                lwc:ref="recordPicker"
+                object-api-name="Aeroporto__c"
+                placeholder="Pesquisar..."
+                label="Selecionar Partida"
+                value={partidaValue}
+                matching-info={matchingInfo}
+                display-info={displayInfo}
+                onchange={handlePartidaChange}>
+            </lightning-record-picker>
 
-            <div class = "slds-p-around_medium">
+            <lightning-record-picker
+                onsubmit={handleSubmit}
+                onsuccess={handleSuccess}
+                lwc:ref="recordPicker"
+                object-api-name="Aeroporto__c"
+                placeholder="Pesquisar..."
+                label="Selecionar Chegada"
+                value={chegadaValue}
+                matching-info={matchingInfo}
+                display-info={displayInfo}
+                onchange={handleChegadaChange}>
+            </lightning-record-picker>
+
+            <div class="slds-p-around_medium">
                 <lightning-button 
-                label="Salvar Voo" 
-                variant="brand" 
-                type="submit"
-                >
+                    variant="brand" 
+                    label="Salvar Voo" 
+                    type="submit" 
+                    onclick={handleSubmit}>
                 </lightning-button>
             </div>
         </div>
-        </lightning-record-edit-form>
         <div class="exampleHolder">
             <lightning-spinner alternative-text="Loading" size="medium" if:true={spinner}></lightning-spinner>
         </div>
